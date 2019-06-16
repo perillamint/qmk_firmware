@@ -68,9 +68,19 @@ const USB_Descriptor_HIDReport_Datatype_t PROGMEM KeyboardReport[] = {
         HID_RI_REPORT_SIZE(8, 0x01),
         HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
 
+#ifdef APPLE_FN_ENABLE
+        HID_RI_USAGE_PAGE(8, 0xFF), /* AppleVendor Top Case */
+        HID_RI_USAGE(8, 0x03), /* KeyboardFn */
+        HID_RI_LOGICAL_MINIMUM(8, 0x00),
+        HID_RI_LOGICAL_MAXIMUM(8, 0x01),
+        HID_RI_REPORT_COUNT(8, 0x01),
+        HID_RI_REPORT_SIZE(8, 0x08),
+        HID_RI_INPUT(8, HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
+#else
         HID_RI_REPORT_COUNT(8, 0x01),
         HID_RI_REPORT_SIZE(8, 0x08),
         HID_RI_INPUT(8, HID_IOF_CONSTANT),  /* reserved */
+#endif
 
         HID_RI_USAGE_PAGE(8, 0x08), /* LEDs */
         HID_RI_USAGE_MINIMUM(8, 0x01), /* Num Lock */
